@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.github.liheyuan'
+project.archivesBaseName = 'coder4-gradle-maven-demo'
+project.version = 0.1
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+}
+
+dependencies {
+    compile 'com.google.guava:guava:21.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
