@@ -1,8 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
+// Use as maven groupId
 group = 'com.github.liheyuan'
+// Use as maven artifactId
 project.archivesBaseName = 'coder4-gradle-maven-demo'
+// Use as maven version
 project.version = 0.1
 
 sourceCompatibility = 1.8
@@ -10,6 +13,24 @@ targetCompatibility = 1.8
 
 repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+}
+
+// source pom
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// javadoc pom
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// source & javadoc pom
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
 
 dependencies {
